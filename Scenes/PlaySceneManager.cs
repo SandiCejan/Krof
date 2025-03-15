@@ -417,7 +417,7 @@ namespace Krof
                             }
                             i++;
                         }
-                        SQLManager.InsertData(MenuManager.loggedUserName, tt.ToTimeSpan(), gameMode == GameMode.Normal ? 0 : 1, SizeX, SizeY, Seed);
+                        APIManager.InsertData(MenuManager.loggedUserName, tt.ToTimeSpan(), gameMode == GameMode.Normal ? 0 : 1, SizeX, SizeY, Seed);
                     }
                     else
                     {
@@ -428,7 +428,7 @@ namespace Krof
                         l.username.Add(MenuManager.loggedUserName);
                         l.time.Add(tt);
                         l.gameMode.Add(gameMode);
-                        SQLManager.InsertData(MenuManager.loggedUserName, tt.ToTimeSpan(), gameMode == GameMode.Normal ? 0 : 1, SizeX, SizeY, Seed);
+                        APIManager.InsertData(MenuManager.loggedUserName, tt.ToTimeSpan(), gameMode == GameMode.Normal ? 0 : 1, SizeX, SizeY, Seed);
                     }
                 }
                 //while (i < l.time.Count && tt > l.time[i])

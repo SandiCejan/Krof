@@ -435,7 +435,7 @@ namespace Krof
             }
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             //PopulateLeaderboard();
-            //SQLManager.InsertData("bb", TimeSpan.Parse("0:0:14:45"), 1, 20, 20, 2000);
+            //APIManager.InsertData("bb", TimeSpan.Parse("0:0:14:45"), 1, 20, 20, 2000);
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             //Enabled = true;
         }
@@ -505,7 +505,7 @@ namespace Krof
             //{
             //    leaderboardPanel1.AddChild(new Text(new Vector2(GameClass.GameWidth / 2, (i + 2) * 50), $"{i}", Color.White, TextAlignment.Middle, Renderer.Fonts[1]));
             //}
-            List<SaveData> list = await SQLManager.GetLeaderboard();
+            List<SaveData> list = await APIManager.GetLeaderboard();
             pos1 = 0;
             pos2 = 0;
             try
