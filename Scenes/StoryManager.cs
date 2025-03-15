@@ -32,16 +32,17 @@ namespace Krof.Scenes
                     "These levels are getting harder and bigger...", "When does it end?", "Am I even going to be able to get away from here?", "What is the purpose behind all of this?"
                 },new string[]
                 {
-                    "Bababoi"
+                    "Uuuu, a note.", "'You are doing great, but the hardest part is yet to come'", "What does that mean?", "I don't like this...", "I don't like this at all..."
                 },new string[]
                 {
-                    "Bababoi"
+                    "This place is getting creepier...", "I feel like I'm being watched.", "I need to stay focused and find a way out."
+                },
+                new string[]
+                {
+                    "I can't believe I've made it this far.", "I must be getting close to the end.", "Just a little more and I'll be free."
                 },new string[]
                 {
-                    "Bababoi"
-                },new string[]
-                {
-                    "End", "Wait, is he dead?", "Yes, he is dead!", "Wuuuuh, let's go!", "Soooo, ammm, what now?", "PART 1: COMPLETED"
+                    "Another note", "'Get it by taking it'", "What does that even mean?", "Wait, is he dead?", "Yes, he is dead!", "Wuuuuh, let's go!", "Soooo, ammm, what now?", "PART 1: COMPLETED"
                 }
             };
         public void SaveState()
@@ -68,7 +69,7 @@ namespace Krof.Scenes
                     PlaySceneManager.SizeY = 15;
                     break;
                 case 1:
-                    PlaySceneManager.Seed = 832;
+                    PlaySceneManager.Seed = 911;
                     PlaySceneManager.SizeX = 25;
                     PlaySceneManager.SizeY = 25;
                     break;
@@ -193,15 +194,15 @@ namespace Krof.Scenes
         public override void Update(GameTime gameTime)
         {
 
-            if (GameManager.KeyboardState.IsKeyUp(Keys.Up) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Up))
-            {
-                OnFinish(true);
-            }
+            //if (GameManager.KeyboardState.IsKeyUp(Keys.Up) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Up))
+            //{
+            //    OnFinish(true);
+            //}
 
-            if (GameManager.KeyboardState.IsKeyUp(Keys.Down) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Down))
-            {
-                progress();
-            }
+            //if (GameManager.KeyboardState.IsKeyUp(Keys.Down) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Down))
+            //{
+            //    progress();
+            //}
             if (GameManager.KeyboardState.IsKeyUp(Keys.Enter) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Enter))
             {
                 switch (State)
@@ -252,26 +253,44 @@ namespace Krof.Scenes
                         }
                         break;
                     case 4:
-                        DisableTalk();
+                        if (TalkID == 5)
+                            DisableTalk();
+                        else
+                        {
+                            PlayerText.text = Conversations[State][TalkID];
+                            TalkID++;
+                        }
                         break;
                     case 5:
-                        DisableTalk();
+                        if (TalkID == 3)
+                            DisableTalk();
+                        else
+                        {
+                            PlayerText.text = Conversations[State][TalkID];
+                            TalkID++;
+                        }
                         break;
                     case 6:
-                        DisableTalk();
+                        if (TalkID == 3)
+                            DisableTalk();
+                        else
+                        {
+                            PlayerText.text = Conversations[State][TalkID];
+                            TalkID++;
+                        }
                         break;
                     case 7:
                         switch (TalkID)
                         {
-                            case 1:
+                            case 3:
                                 DisableTalk();
                                 break;
-                            case 5:
+                            case 7:
                                 new Hider();
                                 Enabled = false;
                                 PlayerPanel.Active = false;
                                 break;
-                            case 6:
+                            case 8:
                                 State++;
                                 GameManager.LoadScene(0);
                                 break;

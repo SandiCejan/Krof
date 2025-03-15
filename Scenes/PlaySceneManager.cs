@@ -325,12 +325,6 @@ namespace Krof
                         Play();
                     }
                 }
-            }else if(GameManager.KeyboardState.IsKeyUp(Keys.Enter) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Enter))
-            {
-                if (player == null)
-                {
-                    Restart();
-                }
             }
             if (UpdateScene)
             {
