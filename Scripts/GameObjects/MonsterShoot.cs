@@ -65,8 +65,6 @@ namespace Krof
             soundEffectShoot = SoundEngine.CreateAudioEmitter(4, Transform);
             GameManager.OnPause += OnStop;
             GameManager.OnPlay += OnPlay;
-            //audioEmitter = SoundEngine.CreateAudioEmitter(Transform.Position);
-            //Renderer.drawableRectangleColliders.Add(collider);
         }
         SoundEffectInstance soundEffectWalk;
         SoundEffectInstance soundEffectRun;
@@ -106,45 +104,6 @@ namespace Krof
                 soundEffectWalk.Play();
             }
         }
-        //{
-        //    WalkSpeed = 1;
-        //    RunSpeed = 2;
-        //    collidersState = new int[] { 0, 0, 0, 0 };
-        //    drawableUI = (DrawableItem)AddComponent(new DrawableItem(Renderer.Sprites[3]));
-        //    MoveAmount = new Vector2(0, 1f);
-        //    //upleft
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(6, 6), new Vector2(-41, -41), true, onTrigger: OnTriggerUpLeft))).Trigger = true;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //    //upright
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(6, 6), new Vector2(35, -41), true, onTrigger: OnTriggerUpRight))).Trigger = true;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //    //downleft
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(6, 6), new Vector2(-41, 35), true, onTrigger: OnTriggerDownLeft))).Trigger = true;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //    //downright
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(6, 6), new Vector2(35, 35), true, onTrigger: OnTriggerDownRight))).Trigger = true;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-
-        //    //up
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(70, 6), new Vector2(-35, -41), true, onTrigger: OnTriggerUp))).Trigger = true;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //    colliders[0] = collider;
-        //    //right
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(6, 70), new Vector2(35, -35), true, onTrigger: OnTriggerRight))).Trigger = true;
-        //    colliders[1] = collider;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //    //down
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(70, 6), new Vector2(-35, 35), true, onTrigger: OnTriggerDown))).Trigger = true;
-        //    colliders[2] = collider;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //    //left
-        //    ((RectangleCollider)AddComponent(new RectangleCollider(3, new Vector2(6, 70), new Vector2(-41, -35), true, onTrigger: OnTriggerLeft))).Trigger = true;
-        //    colliders[3] = collider;
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //    //main
-        //    AddComponent(new RectangleCollider(3, new Vector2(70, 70), new Vector2(-35, -35), true, 80));
-        //    Renderer.drawableRectangleColliders.Add(collider);
-        //}
         public void Shoot()
         {
             Vector2 bulletDirection = new Vector2((float)Math.Cos(Transform.Angle - Math.PI / 2), (float)Math.Sin(Transform.Angle - Math.PI / 2));
@@ -350,28 +309,6 @@ namespace Krof
                     }
                 }
             }
-            //if (Math.Abs(normalized.X) > Math.Abs(normalized.Y))
-            //{
-            //    if (normalized.Y > 0)
-            //    {
-            //        MoveGloballyDown();
-            //    }
-            //    else
-            //    {
-            //        MoveGloballyUp();
-            //    }
-            //}
-            //else
-            //{
-            //    if (normalized.X > 0)
-            //    {
-            //        MoveGloballyRight();
-            //    }
-            //    else
-            //    {
-            //        MoveGloballyLeft();
-            //    }
-            //}
         }
         private void MoveToDestination()
         {
@@ -418,31 +355,6 @@ namespace Krof
             cornerCollisions[1] = false;
             cornerCollisions[2] = false;
             cornerCollisions[3] = false;
-
-
-            //MoveAmount = destination - Transform.Position;
-            //float length = MoveAmount.Length();
-            //if (length > 0.01f)
-            //{
-            //    MoveAmount.Normalize();
-            //}
-            //else
-            //{
-            //    destination = default;
-            //}
-            //if (destination == default)
-            //{
-            //    if (_waypoints.Count > 0)
-            //    {
-            //        destination = _waypoints.Last();
-            //        _waypoints.RemoveAt(_waypoints.Count - 1);
-            //    }
-            //    else
-            //    {
-            //        destination = default;
-            //    }
-            //}
-
         }
         private void MoveLeftOrRight()
         {
@@ -705,11 +617,6 @@ namespace Krof
         }
         public void OnTrigger()
         {
-            //if (runningTime > 0)
-            //{
-            //    MoveToDestination();
-            //    return;
-            //}
             if (caughtInWall)
             {
                 if (Physics.ForceCheckCollissions(colliders[moveDir])?.Layer != 4)

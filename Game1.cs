@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace KrofEngine
@@ -13,7 +12,6 @@ namespace KrofEngine
         // Engine parts
         Renderer _renderer;
         GameManager _gameManager;
-        Input _input;
         AIEngine _AIEngine;
         Physics _physics;
         SoundEngine _soundEngine;
@@ -38,13 +36,8 @@ namespace KrofEngine
                 PreferredBackBufferHeight = GameHeight,
                 SynchronizeWithVerticalRetrace = true,
             };
-            //Graphics.IsFullScreen = true;
             Window.AllowUserResizing = true;
             Window.ClientSizeChanged += Resize;
-            //Graphics.PreferredBackBufferWidth = ScreenWidth;
-            //Graphics.PreferredBackBufferHeight = ScreenHeight;
-            //Graphics.ApplyChanges();
-            //IsMouseVisible = false;
             Instance = this;
             supportedDisplayModes = new();
             foreach (var item in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
@@ -60,9 +53,6 @@ namespace KrofEngine
             ScreenWidth = Window.ClientBounds.Width;
             ScreenHeight = Window.ClientBounds.Height;
             GameManager.OnResize?.Invoke();
-            //Graphics.PreferredBackBufferWidth = ScreenWidth;
-            //Graphics.PreferredBackBufferHeight = ScreenHeight;
-            //Graphics.ApplyChanges();
             Camera.Resize();
         }
 
@@ -76,7 +66,6 @@ namespace KrofEngine
         {
             _renderer = new Renderer(GraphicsDevice);
             _gameManager = new GameManager();
-            _input = new Input();
             _physics = new Physics();
             _AIEngine = new AIEngine();
             _soundEngine = new SoundEngine();
@@ -86,7 +75,6 @@ namespace KrofEngine
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.F1))
                 Exit();
-            _input.Update(gameTime);
             _AIEngine.Update(gameTime);
             _gameManager.Update(gameTime);
             _physics.Update(gameTime);

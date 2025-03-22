@@ -13,8 +13,6 @@ namespace Krof
             MoveAmount = velocity;
             Task.Run(wait);
             AddComponent(new RectangleCollider(5, new Vector2(10, 10), new Vector2(-5, -5), true, onCollision: OnCollision));
-            //AddComponent(new CircleCollider(5, 5, onCollision: OnCollision));
-            //Renderer.drawableRectangleColliders.Add(collider);
         }
         async Task wait()
         {

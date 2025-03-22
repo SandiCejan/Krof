@@ -21,7 +21,6 @@ namespace KrofEngine
         {
             drawableUI = (DrawableUI)AddComponent(new DrawableUI(Renderer.Sprites[1]));
             slider = new Image(Renderer.Sprites[6], position + new Vector2(height/2, height/4), new Vector2(.75f, .75f), Color.Black);
-            // Set initial positions
             _backgroundRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
             _thumbRectangle = new Rectangle((int)(position.X - height/2 + initialValue*width), (int)position.Y - height / 2, height, height);
 

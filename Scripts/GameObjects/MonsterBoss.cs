@@ -5,11 +5,6 @@ using System;
 
 namespace Krof
 {
-    //public enum MonsterState
-    //{
-    //    NORMAL,
-    //    RUNNING
-    //}
     internal class MonsterBoss : AIActor
     {
         DrawableItem drawableItem;
@@ -349,31 +344,6 @@ namespace Krof
             cornerCollisions[1] = false;
             cornerCollisions[2] = false;
             cornerCollisions[3] = false;
-
-
-            //MoveAmount = destination - Transform.Position;
-            //float length = MoveAmount.Length();
-            //if (length > 0.01f)
-            //{
-            //    MoveAmount.Normalize();
-            //}
-            //else
-            //{
-            //    destination = default;
-            //}
-            //if (destination == default)
-            //{
-            //    if (_waypoints.Count > 0)
-            //    {
-            //        destination = _waypoints.Last();
-            //        _waypoints.RemoveAt(_waypoints.Count - 1);
-            //    }
-            //    else
-            //    {
-            //        destination = default;
-            //    }
-            //}
-
         }
         private void MoveLeftOrRight()
         {
@@ -636,11 +606,6 @@ namespace Krof
         }
         public void OnTrigger()
         {
-            //if (runningTime > 0)
-            //{
-            //    MoveToDestination();
-            //    return;
-            //}
             if (caughtInWall)
             {
                 if (Physics.ForceCheckCollissions(colliders[moveDir])?.Layer != 4)

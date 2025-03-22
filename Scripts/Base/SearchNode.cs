@@ -2,6 +2,7 @@
 
 namespace KrofEngine
 {
+    //Not in use
     public class SearchNode
     {
         protected Point _point;

@@ -98,7 +98,6 @@ namespace KrofEngine
 
             if (isFocused)
             {
-                // Blink caret
                 caretBlinkTime += gameTime.ElapsedGameTime.TotalSeconds;
                 if (caretBlinkTime >= 0.5)
                 {
@@ -106,11 +105,9 @@ namespace KrofEngine
                     caretBlinkTime = 0;
                 }
 
-                // Handle keyboard input
                 pressedKeys = keyboardState.GetPressedKeys();
                 foreach (Keys key in pressedKeys)
                 {
-                    // Ignore if the key is held down
                     if (GameManager.PreviousKeyboardState.IsKeyDown(key))
                         continue;
                     if (key == Keys.Left && caretPos != 0)

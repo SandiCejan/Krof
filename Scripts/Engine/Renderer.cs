@@ -61,7 +61,6 @@ namespace KrofEngine
             Fonts.Add(game1.Content.Load<SpriteFont>("SmallFont"));
             Fonts.Add(game1.Content.Load<SpriteFont>("SmallFontInput"));
             backgroundColor = new Color(203, 203, 203);
-            //backgroundColor = Color.Black;
         }
         public void Draw(GameTime gameTime)
         {

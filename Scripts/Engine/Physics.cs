@@ -8,7 +8,6 @@ namespace KrofEngine
     {
         public static bool[,] LayerCollision;
         public static int NumOfLayers;
-        //public static List<List<Collider>> Colliders;
         public static List<List<List<Collider>>> Colliders;
         public static List<Collider> GlobalColliders;
         public static List<GameObject> Movables;
@@ -44,13 +43,7 @@ namespace KrofEngine
                 { false, true, false, true, false, false},// 4
                 { true, true, false, false, false, false} };// 5
             NumOfLayers = LayerCollision.GetLength(0);
-            //Colliders = new List<List<Collider>>();
-            //Colliders2 = new();
             Movables = new();
-            //for (int i = 0; i < NumOfLayers; i++)
-            //{
-            //    Colliders.Add(new List<Collider>());
-            //}
         }
         public static void Setup(int SizeX = 0, int SizeY = 0, int chunkSize = 200)
         {
@@ -203,10 +196,6 @@ namespace KrofEngine
             {
                 if (checkCollissions(collider, colliders[i])) return colliders[i];
             }
-            //for (int i = 0; i < Movables.Count; i++)
-            //{
-            //    if (checkCollissions(collider, Movables[i].collider)) return Movables[i].collider;
-            //}
             for (int i = 0; i < GlobalColliders.Count; i++)
             {
                 if (checkCollissions(collider, GlobalColliders[i])) return GlobalColliders[i];
@@ -294,15 +283,10 @@ namespace KrofEngine
                 float intersectY = Math.Max(c1.Position.Y, c2.Position.Y);
                 float intersectWidth = Math.Min(c1.Position.X + c1.Width, c2.Position.X + c2.Width) - intersectX;
                 float intersectHeight = Math.Min(c1.Position.Y + c1.Height, c2.Position.Y + c2.Height) - intersectY;
-
-                // Check if there's a valid intersection
                 if (intersectWidth > 0 && intersectHeight > 0)
                 {
-                    // Calculate areas
                     float intersectionArea = intersectWidth * intersectHeight;
                     float rect1Area = c1.Width * c1.Height;
-
-                    // Calculate percentage of overlap relative to each rectangle
                     float overlapPercentageRect1 = intersectionArea / rect1Area * 100;
                     return overlapPercentageRect1;
                 }
@@ -385,10 +369,6 @@ namespace KrofEngine
             }
             return null;
         }
-        //private static Collider RayIntersectsInsideArea(Ray2D ray, List<Collider> colliders)
-        //{
-
-        //}
         private static bool RayIntersectsRectangle(Ray2D ray, Rectangle rect)
         {
             float rectMinX = rect.X;
@@ -398,7 +378,6 @@ namespace KrofEngine
 
             float tMin = 0, tMax = ray.maxDistance;
 
-            // Test against X slabs
             if (ray.direction.X != 0)
             {
                 float tx1 = (rectMinX - ray.origin.X) / ray.direction.X;
@@ -408,7 +387,6 @@ namespace KrofEngine
                 tMax = Math.Min(tMax, Math.Max(tx1, tx2));
             }
 
-            // Test against Y slabs
             if (ray.direction.Y != 0)
             {
                 float ty1 = (rectMinY - ray.origin.Y) / ray.direction.Y;
@@ -425,7 +403,6 @@ namespace KrofEngine
             distance = float.MaxValue;
             if (LayerCollision[ray.layer, rect.Layer] && rect.Enabled && (!rect.Trigger || includeTriggers))
             {
-                // Define rectangle bounds
                 float rectMinX = rect.Position.X;
                 float rectMaxX = rect.Position.X + rect.Width;
                 float rectMinY = rect.Position.Y;
@@ -433,7 +410,6 @@ namespace KrofEngine
 
                 float tMin = 0, tMax = float.MaxValue;
 
-                // Test against X slabs
                 if (ray.direction.X != 0)
                 {
                     float tx1 = (rectMinX - ray.origin.X) / ray.direction.X;
@@ -443,7 +419,6 @@ namespace KrofEngine
                     tMax = Math.Min(tMax, Math.Max(tx1, tx2));
                 }
 
-                // Test against Y slabs
                 if (ray.direction.Y != 0)
                 {
                     float ty1 = (rectMinY - ray.origin.Y) / ray.direction.Y;
@@ -453,10 +428,9 @@ namespace KrofEngine
                     tMax = Math.Min(tMax, Math.Max(ty1, ty2));
                 }
 
-                // Check if the ray intersects
                 if (tMin <= tMax && tMax >= 0)
                 {
-                    distance = tMin >= 0 ? tMin : tMax; // Use the nearest positive intersection
+                    distance = tMin >= 0 ? tMin : tMax;
                     return true;
                 }
             }

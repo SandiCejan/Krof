@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace KrofEngine
 {
+    //Not in use
     public class Quadtree
     {
         private int MAX_OBJECTS = 10;

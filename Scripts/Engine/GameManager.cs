@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Newtonsoft.Json;
-using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -53,8 +51,6 @@ namespace KrofEngine
             scenes = new();
 
             assembly = Assembly.GetExecutingAssembly();
-
-            // Find all types implementing the interface
             List<Type> SceneClasses = assembly.GetTypes()
                 .Where(t => t.IsClass && typeof(IScene).IsAssignableFrom(t))
                 .ToList();
@@ -91,9 +87,6 @@ namespace KrofEngine
             UpdateResoultion();
             LoadSceneNow();
         }
-
-        //Problem: Mouse position is not reading correctly before changing resolution
-        //Solution: Call this function after the first update
         async Task UpdateResoultion()
         {
             await Task.Delay(20);
@@ -127,7 +120,6 @@ namespace KrofEngine
             if (!File.Exists(PersistantGamePath + "Settings.json"))
             {
                 Debug.WriteLine("FIRST TIME BOOT");
-                //serialize object directly into file stream
                 try
                 {
                     Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Banana"));
@@ -209,9 +201,7 @@ namespace KrofEngine
                 SoundEngine.Reset();
                 GameObject.DestroyAllObjects();
                 Physics.Setup();
-                //Renderer.drawableObjects.Clear();
                 Renderer.drawableText.Clear();
-                //updateables.Clear();
             }
             PlayGame();
             IScene s = RequestedScene;
@@ -245,11 +235,6 @@ namespace KrofEngine
                 MouseState = Mouse.GetState();
                 MousePosition = new Vector2(MouseState.X * Game1.GameWidth / Game1.ScreenWidth, MouseState.Y * Game1.GameHeight / Game1.ScreenHeight);
             }
-            //if (KeyboardState.GetPressedKeyCount() > 0)
-            //{
-            //    if (KeyboardState.IsKeyDown(Keys.N))
-            //        LoadScene(1);
-            //}
             foreach (var item in updateablesToRemove)
             {
                 updateables.Remove(item);
@@ -278,10 +263,6 @@ namespace KrofEngine
             {
                 objectToDestroy[0].Dest();
             }
-            //foreach (var item in objectToDestroy)
-            //{
-            //    item.Dest();
-            //}
             if (RequestedScene != null)
             {
                 LoadSceneNow();

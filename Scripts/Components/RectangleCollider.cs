@@ -25,22 +25,16 @@ namespace KrofEngine
         {
             Position = transform.Position + movePos;
         }
-        //public override void Update(GameTime gameTime)
-        //{
-        //    Position = transform.Position + movePos;
-        //}
         public override void Awake()
         {
             if (update)
             {
-                //GameManager.updateables.Add(this);
                 UpdatePosition();
                 transform.OnPositionChanged += UpdatePosition;
             }
             else
             {
                 Position = transform.Position + movePos;
-                //tempPos = Position;
             }
             if (Width == 0)
             {

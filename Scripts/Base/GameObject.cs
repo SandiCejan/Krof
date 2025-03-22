@@ -66,11 +66,6 @@ namespace KrofEngine
         }
         internal static void DestroyAllObjects()
         {
-            //AllObjects.Clear();
-            //Physics.Setup();
-            //Renderer.drawableObjects.Clear();
-            //Renderer.drawableText.Clear();
-            //GameManager.updateables.Clear();
             while (0 < AllObjects.Count)
             {
                 AllObjects[0].Dest();

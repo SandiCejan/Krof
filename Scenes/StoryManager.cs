@@ -194,15 +194,15 @@ namespace Krof.Scenes
         public override void Update(GameTime gameTime)
         {
 
-            //if (GameManager.KeyboardState.IsKeyUp(Keys.Up) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Up))
-            //{
-            //    OnFinish(true);
-            //}
+            if (GameManager.KeyboardState.IsKeyUp(Keys.Up) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Up))
+            {
+                OnFinish(true);
+            }
 
-            //if (GameManager.KeyboardState.IsKeyUp(Keys.Down) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Down))
-            //{
-            //    progress();
-            //}
+            if (GameManager.KeyboardState.IsKeyUp(Keys.Down) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Down))
+            {
+                progress();
+            }
             if (GameManager.KeyboardState.IsKeyUp(Keys.Enter) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Enter))
             {
                 switch (State)

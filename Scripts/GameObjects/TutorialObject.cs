@@ -6,7 +6,7 @@ namespace Krof
     internal class TutorialObject : UpdatableGameObject
     {
         Text text;
-        float time = 5;
+        float time = 8;
         internal TutorialObject() {
             text = new Text(new Vector2(20, 50), "TUTORIAL" +
                 "\nW to move up" +

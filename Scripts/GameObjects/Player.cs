@@ -10,7 +10,6 @@ namespace Krof
     {
         public static Player player;
         public float Speed = 300;
-        //private Vector2 moveAmount;
         Vector2 movDir;
         DrawableItem drawableItem;
         int AnimFrame;
@@ -19,19 +18,14 @@ namespace Krof
         {
             UpdateOrder = int.MinValue;
             drawableItem = (DrawableItem)AddComponent(new DrawableItem(Renderer.Sprites[0]));
-            //transform.Scale = new Vector2(100, 100);
-            //drawableUI = (DrawableItem)AddComponent(new DrawableItem(Renderer.Sprites[1]));
             player = this;
             AddComponent(new RectangleCollider(1, new Vector2(50, 50), new Vector2(-25, -25), true, 80, OnCollision, OnTrigger));
             Static = false;
             Renderer.drawableRectangleColliders.Add(collider);
-            //Camera.Transform = Matrix.Identity;
             Camera.Follow(Transform);
             SoundEngine.Listener = Transform;
             GameManager.OnPause += OnStop;
             GameManager.OnPlay += OnPlay;
-            //audioListener = SoundEngine.CreateAudioListener(Transform.Position);
-            //transform.Position += new Vector2(.4f, .4f);
         }
         bool audioPaused;
         public void OnStop()
@@ -128,7 +122,6 @@ namespace Krof
                             MoveAmount = new Vector2(-3f, 0);
                             break;
                     }
-                    //player = null;
                     AnimFrame++;
                     drawableItem.RectangleIndex = AnimFrame % 20 / 10 + 1;
                     if (x > 6)
@@ -138,13 +131,9 @@ namespace Krof
                     }
                 }
             }
-            //audioListener.Position = new Vector3(Transform.Position.X, Transform.Position.Y, 0);
         }
         public void Die()
         {
-            //PlaySceneManager.Restart();
-            //GameManager.PauseGame();
-            //PlaySceneManager.UpdateScene = false;
             PlaySceneManager.OnComplete(false);
             Destroy();
         }
@@ -190,8 +179,6 @@ namespace Krof
         public void OnCollision(Collider collisionObject)
         {
             if (collisionObject.gameObject == null) return;
-            //Debug.WriteLine(collisionObject.gameObject.GetType().ToString());
-            //Debug.WriteLine(Physics.CollisionAmount(collider, collisionObject));
             Type t = collisionObject.gameObject.GetType();
             if (t == typeof(Wall))
             {
@@ -200,11 +187,7 @@ namespace Krof
                     Damage(1);
                     return;
                 }
-                //Debug.WriteLine(x);
-                //transform.Position -= moveAmount;
-                //moveAmount = Vector2.Zero;
             }
-            //transform.Position -= movDir;
         }
         internal override void OnDestroy()
         {

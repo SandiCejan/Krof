@@ -18,7 +18,6 @@ namespace KrofEngine
         public event EventHandler<EventArgs> EnabledChanged;
         public event EventHandler<EventArgs> UpdateOrderChanged;
         protected int moveDir = 0;
-        //public Vector2 destination = default;
         protected float Speed = 3;
         protected float WalkSpeed = 3;
         protected float RunSpeed = 6;
@@ -27,7 +26,6 @@ namespace KrofEngine
         public void Run()
         {
             Speed = RunSpeed;
-            //MoveAmount *= 1.5f;
             switch (moveDir)
             {
                 case 0:
@@ -47,7 +45,6 @@ namespace KrofEngine
         public void Walk()
         {
             Speed = WalkSpeed;
-            //MoveAmount *= .5f;
             switch (moveDir)
             {
                 case 0:
@@ -66,137 +63,11 @@ namespace KrofEngine
         }
         public virtual void Update(GameTime gameTime)
         {
-            //actualMove = Transform.Position - prevPos;
-            //prevPos = Transform.Position;
-
-            //MoveAmount = destination - Transform.Position;
-            //float length = MoveAmount.Length();
-            //if (length < 3f)
-            //{
-            //    destination = default;
-            //}
-            //MoveAmount.Normalize();
-            //MoveAmount *= Speed;
         }
         internal override void OnDestroy()
         {
             AIEngine.Actors.Remove(this);
         }
-
-
-        //protected List<Vector2> _waypoints = new();
-        //private List<SearchNode> _fringe = new();
-        //protected Dictionary<Point, int> _expandedPoints = new();
-
-        //public List<Vector2> Waypoints => _waypoints;
-
-
-        //public void GoTo(Vector2 theTarget)
-        //{
-        //    _waypoints.Clear();
-        //    ArrayList gridCoordinatesToGoal = FindPathTo(AIEngine.GetCoordinates(theTarget));
-        //    foreach (Point gridCoordinate in gridCoordinatesToGoal)
-        //    {
-        //        _waypoints.Add(new Vector2(gridCoordinate.X * 100 + 50f, gridCoordinate.Y * 100 + 50f));
-        //    }
-
-        //    destination = default;
-        //}
-        //public ArrayList FindPathTo(Point goal)
-        //{
-        //    ArrayList result = new ArrayList();
-        //    _fringe.Clear();
-        //    _expandedPoints.Clear();
-
-        //    // Check if goal is Obstacle
-        //    //foreach (var itemAtGoal in _scene.GetItemsAt(goal))
-        //    //{
-        //    //    if (itemAtGoal is Obstacle)
-        //    //    {
-        //    //        return result;
-        //    //    }
-        //    //}
-
-        //    // Add initial node from which the search starts.
-        //    SearchNode initialNode = SearchNode.Node();
-        //    initialNode.Point = AIEngine.GetCoordinates(Transform.Position);
-        //    _fringe.Add(initialNode);
-        //    while (true)
-        //    {
-        //        // If fringe is empty we're in a dead end with nowhere to go. Fail!
-        //        if (_fringe.Count == 0)
-        //        {
-        //            return result;
-        //        }
-
-        //        // Get the node with smallest cost.
-        //        _fringe.Sort((x, y) => -x.TotalCost.CompareTo(y.TotalCost)); // descending or ascending
-        //        int lastIdx = _fringe.Count - 1;
-        //        SearchNode node = _fringe[lastIdx];
-        //        _fringe.RemoveAt(lastIdx);
-
-        //        // If this is the goal state return with success.
-        //        if (node.Point == goal)
-        //        {
-        //            while (true)
-        //            {
-        //                if (node.Parent is null)
-        //                {
-        //                    return result;
-        //                }
-        //                else
-        //                {
-        //                    result.Add(node.Point);
-        //                    node = node.Parent;
-        //                }
-        //            }
-        //        }
-
-        //        // Not a goal state - expand the node and add the successors to the list.
-        //        _fringe.AddRange(ExpandGoal(node, goal));
-        //    }
-        //}
-
-        //public List<SearchNode> ExpandGoal(SearchNode node, Point goal)
-        //{
-        //    List<SearchNode> successors = new();
-        //    foreach (Point point in NeighboursOf(node.Point))
-        //    {
-        //        int newCost = node.RealCost + 1;
-
-        //        if (!_expandedPoints.ContainsKey(point) || newCost < _expandedPoints[point])
-        //        {
-        //            _expandedPoints[point] = newCost;
-        //            SearchNode newNode = SearchNode.Node();
-        //            newNode.Point = point;
-        //            newNode.Parent = node;
-        //            newNode.RealCost = newCost;
-        //            newNode.HeuristicCost = Math.Abs(goal.X - point.X) + Math.Abs(goal.Y - point.Y);
-        //            successors.Add(newNode);
-        //        }
-        //    }
-
-        //    return successors;
-        //}
-
-        //public ArrayList NeighboursOf(Point point)
-        //{
-        //    ArrayList neighbours = new ArrayList();
-        //    AddPointIfClearTo(new Point(point.X - 1, point.Y), neighbours);
-        //    AddPointIfClearTo(new Point(point.X + 1, point.Y), neighbours);
-        //    AddPointIfClearTo(new Point(point.X, point.Y - 1), neighbours);
-        //    AddPointIfClearTo(new Point(point.X, point.Y + 1), neighbours);
-        //    return neighbours;
-        //}
-
-        //public void AddPointIfClearTo(Point point, ArrayList array)
-        //{
-        //    if (!AIEngine.Grid[point.X, point.Y])
-        //    {
-        //        array.Add(point);
-        //    }
-        //}
-
 
         #region GlobalMovement
         protected void MoveGloballyUp()

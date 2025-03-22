@@ -9,13 +9,11 @@ namespace KrofEngine
         private string text;
         public TextAlignment TextAlignment { get { return textAlignment; } set { textAlignment = value; setPosition(); } }
         private TextAlignment textAlignment;
-        //public Vector2 Position { get { return position; } set { position = value; setPosition(); } }
         internal Vector2 position { get; private set; }
         public Vector2 BeginPosition;
         public SpriteFont Font { get { return font; } set { font = value; setPosition(); } }
         private SpriteFont font;
         public Color Color;
-        //public bool Enabled;
         public DrawableText(string text, Color color, TextAlignment textAlignment = TextAlignment.Left, SpriteFont font = null) : base(Game1.Instance)
         {
             this.text = text;

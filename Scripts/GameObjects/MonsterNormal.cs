@@ -5,11 +5,6 @@ using System;
 
 namespace Krof
 {
-    //public enum MonsterState
-    //{
-    //    NORMAL,
-    //    RUNNING
-    //}
     internal class MonsterNormal : AIActor
     {
         DrawableItem drawableItem;
@@ -61,7 +56,6 @@ namespace Krof
             Renderer.drawableRectangleColliders.Add(collider);
             //main
             AddComponent(new RectangleCollider(3, new Vector2(92, 92), new Vector2(-46, -46), true, 80, OnCollision));
-            //SoundEngine.SoundEffectsInstances[9].IsLooped = true;
             soundEffectWalk = SoundEngine.CreateAudioEmitter(1, Transform);
             soundEffectWalk.IsLooped = true;
             soundEffectWalk.Play();
@@ -69,8 +63,6 @@ namespace Krof
             soundEffectRun.IsLooped = true;
             GameManager.OnPause += OnStop;
             GameManager.OnPlay += OnPlay;
-            //audioEmitter = SoundEngine.CreateAudioEmitter(Transform.Position);
-            //Renderer.drawableRectangleColliders.Add(collider);
         }
         SoundEffectInstance soundEffectWalk;
         SoundEffectInstance soundEffectRun;
@@ -87,7 +79,6 @@ namespace Krof
             }
             GameManager.OnPause -= OnStop;
             GameManager.OnPlay -= OnPlay;
-            //SoundEngine.StopSound(9);
             base.OnDestroy();
         }
         public void OnStop()
@@ -298,28 +289,6 @@ namespace Krof
                     }
                 }
             }
-            //if (Math.Abs(normalized.X) > Math.Abs(normalized.Y))
-            //{
-            //    if (normalized.Y > 0)
-            //    {
-            //        MoveGloballyDown();
-            //    }
-            //    else
-            //    {
-            //        MoveGloballyUp();
-            //    }
-            //}
-            //else
-            //{
-            //    if (normalized.X > 0)
-            //    {
-            //        MoveGloballyRight();
-            //    }
-            //    else
-            //    {
-            //        MoveGloballyLeft();
-            //    }
-            //}
         }
         private void MoveToDestination()
         {
@@ -366,31 +335,6 @@ namespace Krof
             cornerCollisions[1] = false;
             cornerCollisions[2] = false;
             cornerCollisions[3] = false;
-
-
-            //MoveAmount = destination - Transform.Position;
-            //float length = MoveAmount.Length();
-            //if (length > 0.01f)
-            //{
-            //    MoveAmount.Normalize();
-            //}
-            //else
-            //{
-            //    destination = default;
-            //}
-            //if (destination == default)
-            //{
-            //    if (_waypoints.Count > 0)
-            //    {
-            //        destination = _waypoints.Last();
-            //        _waypoints.RemoveAt(_waypoints.Count - 1);
-            //    }
-            //    else
-            //    {
-            //        destination = default;
-            //    }
-            //}
-
         }
         private void MoveLeftOrRight()
         {
@@ -653,11 +597,6 @@ namespace Krof
         }
         public void OnTrigger()
         {
-            //if (runningTime > 0)
-            //{
-            //    MoveToDestination();
-            //    return;
-            //}
             if (caughtInWall)
             {
                 if (Physics.ForceCheckCollissions(colliders[moveDir])?.Layer != 4)

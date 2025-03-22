@@ -16,8 +16,6 @@ namespace KrofEngine
             if (Physics.NumOfLayers > layer)
             {
                 this.layer = layer;
-                //Physics.Colliders[layer].Add(this);
-                //Physics.Colliders2.Add(this);
             }
         }
         internal float Width;
@@ -54,9 +52,7 @@ namespace KrofEngine
         {
             if (Physics.LayerCollision.GetLength(0) > layer)
             {
-                //Physics.Colliders[this.layer].Remove(this);
                 this.layer = layer;
-                //Physics.Colliders[layer].Add(this);
             }
         }
         internal override void OnDestroy()

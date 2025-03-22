@@ -183,10 +183,10 @@ namespace Krof
             SeedInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 400), Color.White, new InputFieldRules(true, false, false, false), 9, "Seed", "", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
             playCustomPanel.AddChild(SeedInput);
             playCustomPanel.AddChild(new Text(new Vector2(Game1.GameWidth / 2 - 210, 412), "Seed", Color.White, TextAlignment.Right, Renderer.Fonts[1]));
-            WidthInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 460), Color.White, new InputFieldRules(true, false, false, false), 3, "Width", "60", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
+            WidthInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 460), Color.White, new InputFieldRules(true, false, false, false), 3, "Width", "10", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
             playCustomPanel.AddChild(WidthInput);
             playCustomPanel.AddChild(new Text(new Vector2(Game1.GameWidth / 2 - 210, 472), "Width", Color.White, TextAlignment.Right, Renderer.Fonts[1]));
-            HeightInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 520), Color.White, new InputFieldRules(true, false, false, false), 3, "Height", "60", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
+            HeightInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 520), Color.White, new InputFieldRules(true, false, false, false), 3, "Height", "10", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
             playCustomPanel.AddChild(HeightInput);
             playCustomPanel.AddChild(new Text(new Vector2(Game1.GameWidth / 2 - 210, 532), "Height", Color.White, TextAlignment.Right, Renderer.Fonts[1]));
             playCustomPanel.AddChild(new Button(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 580), Color.White, Color.Gray, "Start", Color.Black, TextAlignment.Middle, Renderer.Fonts[1], mouseUp: delegate
@@ -201,11 +201,11 @@ namespace Krof
                 }
                 if (int.TryParse(WidthInput.Text, out int num))
                 {
-                    PlaySceneManager.SizeX = num > 25 ? num : 25;
+                    PlaySceneManager.SizeX = num > 2 ? num : 25;
                 }
                 if (int.TryParse(HeightInput.Text, out num))
                 {
-                    PlaySceneManager.SizeY = num > 25 ? num : 25;
+                    PlaySceneManager.SizeY = num > 2 ? num : 25;
                 }
                 PlaySceneManager.gameMode = gameMode;
                 GameManager.LoadScene(1);
