@@ -66,6 +66,7 @@ namespace KrofEngine
         {
             graphicsDevice.Clear(backgroundColor);
             _spriteBatch.Begin(transformMatrix: Camera.Transform);
+            //DEV TOOLS
             //_spriteBatch.Begin();
             //if (Game1.playerTransform != null)
             //{

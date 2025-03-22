@@ -7,8 +7,8 @@ namespace KrofEngine
     {
         public new int CompareTo(IUpdate other)
         {
-            if (other == null) return 1; // Current instance is greater if the other is null
-            return UpdateOrder.CompareTo(other.UpdateOrder); // Compare by Value property
+            if (other == null) return 1;
+            return UpdateOrder.CompareTo(other.UpdateOrder);
         }
     }
 }

@@ -2,11 +2,9 @@
 using Krof.Scripts;
 using KrofEngine;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Krof
@@ -183,10 +181,10 @@ namespace Krof
             SeedInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 400), Color.White, new InputFieldRules(true, false, false, false), 9, "Seed", "", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
             playCustomPanel.AddChild(SeedInput);
             playCustomPanel.AddChild(new Text(new Vector2(Game1.GameWidth / 2 - 210, 412), "Seed", Color.White, TextAlignment.Right, Renderer.Fonts[1]));
-            WidthInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 460), Color.White, new InputFieldRules(true, false, false, false), 3, "Width", "10", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
+            WidthInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 460), Color.White, new InputFieldRules(true, false, false, false), 3, "Width", "40", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
             playCustomPanel.AddChild(WidthInput);
             playCustomPanel.AddChild(new Text(new Vector2(Game1.GameWidth / 2 - 210, 472), "Width", Color.White, TextAlignment.Right, Renderer.Fonts[1]));
-            HeightInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 520), Color.White, new InputFieldRules(true, false, false, false), 3, "Height", "10", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
+            HeightInput = new InputField(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 520), Color.White, new InputFieldRules(true, false, false, false), 3, "Height", "40", Color.Black, TextAlignment.Middle, Renderer.Fonts[2], new Color(209, 209, 209), Color.Gray);
             playCustomPanel.AddChild(HeightInput);
             playCustomPanel.AddChild(new Text(new Vector2(Game1.GameWidth / 2 - 210, 532), "Height", Color.White, TextAlignment.Right, Renderer.Fonts[1]));
             playCustomPanel.AddChild(new Button(Renderer.Sprites[7], new Vector2(Game1.GameWidth / 2, 580), Color.White, Color.Gray, "Start", Color.Black, TextAlignment.Middle, Renderer.Fonts[1], mouseUp: delegate
@@ -201,11 +199,11 @@ namespace Krof
                 }
                 if (int.TryParse(WidthInput.Text, out int num))
                 {
-                    PlaySceneManager.SizeX = num > 2 ? num : 25;
+                    PlaySceneManager.SizeX = num > 25 ? num : 25;
                 }
                 if (int.TryParse(HeightInput.Text, out num))
                 {
-                    PlaySceneManager.SizeY = num > 2 ? num : 25;
+                    PlaySceneManager.SizeY = num > 25 ? num : 25;
                 }
                 PlaySceneManager.gameMode = gameMode;
                 GameManager.LoadScene(1);
@@ -433,11 +431,6 @@ namespace Krof
                 namePanel.Active = false;
                 openPanel = mainPanel;
             }
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            //PopulateLeaderboard();
-            //APIManager.InsertData("bb", TimeSpan.Parse("0:0:14:45"), 1, 20, 20, 2000);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            //Enabled = true;
         }
         void ResolutionChanged()
         {
@@ -468,14 +461,12 @@ namespace Krof
         }
         public static void SetMusicVolume(float volume)
         {
-            //listener.
             SoundEngine.SoundEffectsInstances[1].Volume = GameManager.Settings.MusicVolume;
             SoundEngine.SoundEffectsInstances[2].Volume = GameManager.Settings.MusicVolume;
         }
         public static void SetEffectsVolume(float volume)
         {
             SoundEngine.SoundEffectsInstances[0].Volume = GameManager.Settings.EffectsVolume;
-            //SoundEngine.SoundEffectsInstances[2].Volume = GameManager.Settings.EffectsVolume;
         }
         public static void ShowMenu(Panel menu)
         {
@@ -501,10 +492,6 @@ namespace Krof
                 }
             }
             loadedLeaderborad = true;
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    leaderboardPanel1.AddChild(new Text(new Vector2(GameClass.GameWidth / 2, (i + 2) * 50), $"{i}", Color.White, TextAlignment.Middle, Renderer.Fonts[1]));
-            //}
             List<SaveData> list = await APIManager.GetLeaderboard();
             pos1 = 0;
             pos2 = 0;

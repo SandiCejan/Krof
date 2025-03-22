@@ -41,22 +41,17 @@ namespace Krof
         {
             UpdateScene = false;
             GameManager.PauseGame();
-            //player.Active = false;
         }
         public static void Pause()
         {
             PauseOnly();
             pausePanel.Active = true;
             GameManager.isMouseVisible = true;
-            //Vector2 newPos = player.Transform.Position - new Vector2(160, 160);
-            //pausePanel.Move(newPos - prevPausePos);
-            //prevPausePos = newPos;
         }
         public static void PlayOnly()
         {
             UpdateScene = true;
             GameManager.PlayGame();
-            //player.Active = true;
         }
         public static void Play()
         {
@@ -69,8 +64,6 @@ namespace Krof
             GameManager.isMouseVisible = false;
             game1 = Game1.Instance;
             OnComplete = Complete;
-            //GameManager.OnPause += delegate{ player.Active = false; };
-            //GameManager.OnPlay += delegate { player.Active = true; };
             Instance = this;
             //ShowMaze(100, 100, seed == 0 ? (int)new Random().NextInt64() : seed);
             ShowMaze(Seed == 0 ? (int)new Random().NextInt64() : Seed);
@@ -98,7 +91,6 @@ namespace Krof
         }
         public static void Restart()
         {
-            //Instance.ShowMaze(SizeX, SizeY, seed == 0 ? (int)new Random().NextInt64() : seed);
             GameManager.ReloadScene();
         }
         public int[] GetClosestFreePoint(int x, int y)
@@ -277,7 +269,6 @@ namespace Krof
             //waitTime = 50000/fullSize;
             waitTime = 500000 / fullSize;
             cells = null;
-            //Task.Run(ShowWalls);
             s.Stop();
             //Debug.WriteLine(s.ElapsedMilliseconds.ToString());
             startTime = TimeOnly.FromDateTime(DateTime.Now);
@@ -295,18 +286,11 @@ namespace Krof
             if (!cells[X, Y + 1]) return new int[] { X, Y + 1 };
             return null;
         }
-        //async Task ShowWalls()
-        //{
-        //    while (true)
-        //    {
-        //        await Task.Delay(waitTime);
-        //        wallGroups[random.Next(wallGroups.Count)].SetEnabled();
-        //    }
-        //}
         int currentTime = 0;
 
         public override void Update(GameTime gameTime)
         {
+            //DEV TOOLS
             //numOfObjectsRendered.text = "Objects rendered: " + Renderer.numOfObjectsRendered + "/" + GameObject.AllObjects.Count;
             if (GameManager.KeyboardState.IsKeyUp(Keys.Escape) && GameManager.PreviousKeyboardState.IsKeyDown(Keys.Escape))
             {
@@ -425,31 +409,6 @@ namespace Krof
                         APIManager.InsertData(MenuManager.loggedUserName, tt.ToTimeSpan(), gameMode == GameMode.Normal ? 0 : 1, SizeX, SizeY, Seed);
                     }
                 }
-                //while (i < l.time.Count && tt > l.time[i])
-                //{
-                //    i++;
-                //}
-                //for (int i = 0; i < l.width.Count; i++)
-                //{
-                //    if (l.width[i] == SizeX && l.height[i] == SizeY && l.username[i] == MenuManager.loggedUserName && l.gameMode[i] == gameMode)
-                //    {
-                //        if (new System.TimeOnly(t.Ticks) < l.time[i])
-                //        {
-                //            l.time[i] = new System.TimeOnly(t.Ticks);
-                //        }
-                //        found = true;
-                //        break;
-                //    }
-                //}
-                //if (!found)
-                //{
-                //    l.width.Add(SizeX);
-                //    l.height.Add(SizeY);
-                //    l.seed.Add(runningSeed);
-                //    l.username.Add(MenuManager.loggedUserName);
-                //    l.time.Add(new System.TimeOnly(t.Ticks));
-                //    l.gameMode.Add(gameMode);
-                //}
             }
             else
             {
